@@ -20,11 +20,11 @@ const setFormListener = () => {
 }
 
 const addJoke = (jokeapi) => {
-    if(info.type === "single"){
+    if(jokeapi.Type === "single"){
         let content = `
             <p> ${jokeapi.Text[0]} </p>
         `;
-    }else if(info.type === "twopart"){
+    }else if(jokeapi.Type === "twopart"){
         let content = `
             <p> ${jokeapi.Text[0]} </p>
             <p> ${jokeapi.Text[1]} </p>
