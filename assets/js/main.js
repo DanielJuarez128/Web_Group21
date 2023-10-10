@@ -1,6 +1,7 @@
 const urlAPI = 'https://v2.jokeapi.dev/joke/Any?lang=es';
 let buttonJoke = null;
 let createJoke = null;
+let content = null;
 
 const bindElements = () => {
     buttonJoke = document.querySelector("#api");
@@ -19,7 +20,17 @@ const setFormListener = () => {
 }
 
 const addJoke = (jokeapi) => {
-    const content = `<p> ${jokeapi.Text} </p>`;
+    if(info.type === "single"){
+        let content = `
+            <p> ${jokeapi.Text[0]} </p>
+        `;
+    }else if(info.type === "twopart"){
+        let content = `
+            <p> ${jokeapi.Text[0]} </p>
+            <p> ${jokeapi.Text[1]} </p>
+        `;
+    }
+    
     const _article = document.createElement("article");
     _article.innerHTML = content;
     return _article;
@@ -49,14 +60,20 @@ const fetchJoke = async () => {
 
 const castResponse = (info) => {
     if(info.type === "single"){
-        return [
-            info.joke
-        ];
+        return{
+            Type: info.type,
+            Text: [
+                info.joke
+            ]
+        };
     }else if(info.type === "twopart"){
-        return [
-            info.setup,
-            info.delivery
-        ];
+        return {
+            Type: info.type,
+            Text: [
+                info.setup,
+                info.delivery
+            ]
+        };
     }
 }
 
