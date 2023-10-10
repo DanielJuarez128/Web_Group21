@@ -20,7 +20,7 @@ const setFormListener = () => {
 }
 
 const addJoke = (jokeapi) => {
-    if(jokeapi.Type === "single"){
+    /* if(jokeapi.Type === "single"){
         let content = `
             <p> ${jokeapi.Text[0]} </p>
         `;
@@ -29,9 +29,24 @@ const addJoke = (jokeapi) => {
             <p> ${jokeapi.Text[0]} </p>
             <p> ${jokeapi.Text[1]} </p>
         `;
+    } */
+
+    let content = `<p> ${jokeapi.Text[0]} </p>`;
+
+    if(jokeapi.Type === "twopart") {
+        content = content + `
+            <button> Show </button>
+            <p class="delivery" style="display:none;"> ${jokeapi.Text[1]} </p>
+        `;
     }
+
     const _article = document.createElement("article");
     _article.innerHTML = content;
+
+    _article.querySelector("button")?.addEventListener("click", (e) => {
+        _article.querySelector(".delivery").style.display = "block";
+        _article.querySelector("button").style.display = "none";
+    });
     return _article;
 }  
 
