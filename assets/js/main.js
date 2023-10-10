@@ -30,7 +30,6 @@ const addJoke = (jokeapi) => {
             <p> ${jokeapi.Text[1]} </p>
         `;
     }
-    
     const _article = document.createElement("article");
     _article.innerHTML = content;
     return _article;
