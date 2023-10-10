@@ -53,7 +53,7 @@ const fetchJoke = async () => {
             alert("Desconocido");
         }
     } catch (error) {
-        alert("Falle :c");
+        alert(error);
     }
 }
 
