@@ -1,0 +1,1 @@
+const urlAPI = 'https://v2.jokeapi.dev/joke/Any?lang=es';
